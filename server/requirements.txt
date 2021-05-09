@@ -1,4 +1,5 @@
 alembic>=0.8.5
+alembic_utils>=0.5.6
 certifi>=2017.11.5
 coloredlogs==5.0
 heif-image-plugin==0.3.2
