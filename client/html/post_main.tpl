@@ -65,6 +65,11 @@
         <% } %>
 
         <div class='after-mobile-controls'>
+
+            <% if (ctx.canListPools && ctx.canViewPools) { %>
+                <div class='pool-navigators-container'></div>
+            <% } %>
+
             <% if (ctx.canCreateComments) { %>
                 <h2>Add comment</h2>
                 <div class='comment-form-container'></div>
