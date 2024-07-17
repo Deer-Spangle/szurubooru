@@ -42,12 +42,16 @@ def get_mime_type(content: bytes) -> str:
     if content[4:12] == b"ftypqt  ":
         return "video/quicktime"
 
+    if content[0:4] == b"PK\x03\x04":
+        return "application/zip"
+
     return "application/octet-stream"
 
 
 def get_extension(mime_type: str) -> Optional[str]:
     extension_map = {
         "application/x-shockwave-flash": "swf",
+        "application/zip": "zip",
         "image/gif": "gif",
         "image/jpeg": "jpg",
         "image/png": "png",

@@ -89,6 +89,7 @@ TYPE_MAP = {
     model.Post.TYPE_ANIMATION: "animation",
     model.Post.TYPE_VIDEO: "video",
     model.Post.TYPE_FLASH: "flash",
+    model.Post.TYPE_ZIP: "zip",
 }
 
 FLAG_MAP = {
@@ -621,6 +622,8 @@ def update_post_content(post: model.Post, content: Optional[bytes]) -> None:
             post.type = model.Post.TYPE_IMAGE
     elif mime.is_video(post.mime_type):
         post.type = model.Post.TYPE_VIDEO
+    elif post.mime_type == "application/zip":
+        post.type = model.Post.TYPE_ZIP
     else:
         raise InvalidPostContentError(
             "Unhandled file type: %r" % post.mime_type

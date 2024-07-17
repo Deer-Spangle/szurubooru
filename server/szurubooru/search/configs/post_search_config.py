@@ -25,6 +25,7 @@ def _type_transformer(value: str) -> str:
         "webm": model.Post.TYPE_VIDEO,
         "flash": model.Post.TYPE_FLASH,
         "swf": model.Post.TYPE_FLASH,
+        "zip": model.Post.TYPE_ZIP,
     }
     return search_util.enum_transformer(available_values, value)
 
