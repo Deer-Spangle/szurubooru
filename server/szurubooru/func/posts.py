@@ -674,6 +674,7 @@ def _try_get_dimensions(content: Optional[bytes]) -> Tuple[Optional[int], Option
             )
         else:
             return None, None
+    return image.width, image.height
 
 
 def update_post_thumbnail(
