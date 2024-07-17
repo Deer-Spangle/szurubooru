@@ -108,3 +108,9 @@ def is_heif(mime_type: str) -> bool:
         "image/heic",
         "image/avif",
     )
+
+
+def is_visual(mime_type: str) -> bool:
+    return mime_type.lower() not in (
+        "application/zip",
+    )
