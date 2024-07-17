@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+     y="0px" viewBox="0 0 150 150" style="enable-background:new 0 0 150 150" xml:space="preserve">
+    <style type="text/css">
+        .doc {
+            stroke: #000;
+            stroke-width: 5px;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .label {
+            fill: #000;
+        }
+        .text {
+            fill: #FFF;
+        }
+        .bg {
+            fill: transparent;
+        }
+    </style>
+    <defs>
+        <mask id="labelText">
+            <rect x="0" y="0" width="150" height="150" fill="white"/>
+            <text x="60" y="90" textLength="60" font-size="30" fill="black">ZIP</text>
+        </mask>
+    </defs>
+    <g>
+        <rect class="bg" x="0" y="0" width="150" height="150" />
+        <path class="doc" d="M90 25 L40 25 L40 125 L110 125 L110 45 L90 45 L90 25 L110 45" mask="url(#labelText)" />
+        <rect class="label" x="50" y="60" width="80" height="40" rx="5" ry="5" mask="url(#labelText)"/>
+    </g>
+</svg>

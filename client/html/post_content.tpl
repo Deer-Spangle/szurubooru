@@ -27,6 +27,18 @@
             'Your browser doesn\'t support HTML5 videos.')
         %>
 
+    <% } else if (ctx.post.type === 'zip') { %>
+
+        <% if (ctx.post.hasCustomThumbnail === true) { %>
+            
+            <img class='resize-listener' alt='' src='<%- ctx.post.thumbnailUrl %>'/>
+
+        <% } else { %>
+
+            <img class='resize-listener' alt='' src='/img/doc_zip.svg'/>
+
+        <% } %>
+
     <% } else { console.log(new Error('Unknown post type')); } %>
 
     <div class='post-overlay resize-listener'>
