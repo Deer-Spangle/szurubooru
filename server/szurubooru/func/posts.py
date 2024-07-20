@@ -89,6 +89,7 @@ TYPE_MAP = {
     model.Post.TYPE_ANIMATION: "animation",
     model.Post.TYPE_VIDEO: "video",
     model.Post.TYPE_FLASH: "flash",
+    model.Post.TYPE_ZIP: "zip",
 }
 
 FLAG_MAP = {
@@ -621,6 +622,8 @@ def update_post_content(post: model.Post, content: Optional[bytes]) -> None:
             post.type = model.Post.TYPE_IMAGE
     elif mime.is_video(post.mime_type):
         post.type = model.Post.TYPE_VIDEO
+    elif post.mime_type == "application/zip":
+        post.type = model.Post.TYPE_ZIP
     else:
         raise InvalidPostContentError(
             "Unhandled file type: %r" % post.mime_type
@@ -646,28 +649,32 @@ def update_post_content(post: model.Post, content: Optional[bytes]) -> None:
         post.signature = generate_post_signature(post, content)
 
     post.file_size = len(content)
+    if mime.is_visual(post.mime_type):
+        post.canvas_width, post.canvas_height = _try_get_dimensions(content)
+    setattr(post, "__content", content)
+
+
+def _try_get_dimensions(content: Optional[bytes]) -> Tuple[Optional[int], Optional[int]]:
+    # Try and load as image
     try:
         image = images.Image(content)
-        post.canvas_width = image.width
-        post.canvas_height = image.height
     except errors.ProcessingError as ex:
         logger.exception(ex)
         if not config.config["allow_broken_uploads"]:
             raise InvalidPostContentError("Unable to process image metadata")
         else:
-            post.canvas_width = None
-            post.canvas_height = None
-    if (post.canvas_width is not None and post.canvas_width <= 0) or (
-        post.canvas_height is not None and post.canvas_height <= 0
+            return None, None
+    # If canvas size is negative, then handle that
+    if (image.width is not None and image.width <= 0) or (
+        image.height is not None and image.height <= 0
     ):
         if not config.config["allow_broken_uploads"]:
             raise InvalidPostContentError(
                 "Invalid image dimensions returned during processing"
             )
         else:
-            post.canvas_width = None
-            post.canvas_height = None
-    setattr(post, "__content", content)
+            return None, None
+    return image.width, image.height
 
 
 def update_post_thumbnail(

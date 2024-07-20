@@ -6,10 +6,18 @@
                     <a class='thumbnail-wrapper <%= post.tags.length > 0 ? "tags" : "no-tags" %>'
                             title='@<%- post.id %> (<%- post.type %>)&#10;&#10;Tags: <%- post.tags.map(tag => '#' + tag.names[0]).join(' ') || 'none' %>'
                             href='<%= ctx.canViewPosts ? ctx.getPostUrl(post.id, ctx.parameters) : '' %>'>
-                        <%= ctx.makeThumbnail(post.thumbnailUrl) %>
+
+                        <% if (post.type == 'zip' && post.hasCustomThumbnail !== true) { %>
+                            <%= ctx.makeThumbnail("img/doc_zip.svg") %>
+                        <% } else { %>
+                            <%= ctx.makeThumbnail(post.thumbnailUrl) %>
+                        <% } %>
+                          
                         <span class='type' data-type='<%- post.type %>'>
                             <% if (post.type == 'video' || post.type == 'flash' || post.type == 'animation') { %>
                                 <span class='icon'><i class='fa fa-film'></i></span>
+                            <% } else if (post.type == 'zip') { %>
+                                <span class='icon'><i class='fa fa-file-archive-o'></i></span>
                             <% } else { %>
                                 <%- post.type %>
                             <% } %>

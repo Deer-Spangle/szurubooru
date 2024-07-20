@@ -194,6 +194,7 @@ class Post(Base):
     TYPE_ANIMATION = "animation"
     TYPE_VIDEO = "video"
     TYPE_FLASH = "flash"
+    TYPE_ZIP = "zip"
 
     FLAG_LOOP = "loop"
     FLAG_SOUND = "sound"

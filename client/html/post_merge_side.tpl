@@ -44,6 +44,7 @@
                     'video/mp4': 'MPEG-4',
                     'video/quicktime': 'MOV',
                     'application/x-shockwave-flash': 'SWF',
+                    'application/zip': 'ZIP'
                 }[ctx.post.mimeType] +
                 ' (' +
                 (ctx.post.canvasWidth ?
