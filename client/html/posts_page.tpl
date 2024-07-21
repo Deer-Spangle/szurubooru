@@ -9,6 +9,8 @@
 
                         <% if (post.type == 'zip' && post.hasCustomThumbnail !== true) { %>
                             <%= ctx.makeThumbnail("img/doc_zip.svg") %>
+                        <% } else if (post.type == 'story' && post.hasCustomThumbnail !== true) { %>
+                            <%= ctx.makeThumbnail("img/doc_story.svg") %>
                         <% } else { %>
                             <%= ctx.makeThumbnail(post.thumbnailUrl) %>
                         <% } %>
@@ -18,6 +20,8 @@
                                 <span class='icon'><i class='fa fa-film'></i></span>
                             <% } else if (post.type == 'zip') { %>
                                 <span class='icon'><i class='fa fa-file-archive-o'></i></span>
+                            <% } else if (post.type == 'story') { %>
+                                <span class='icon'><i class='fa fa-book'></i></span>
                             <% } else { %>
                                 <%- post.type %>
                             <% } %>

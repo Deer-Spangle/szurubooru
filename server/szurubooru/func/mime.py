@@ -45,11 +45,15 @@ def get_mime_type(content: bytes) -> str:
     if content[0:4] == b"PK\x03\x04":
         return "application/zip"
 
+    if content[0:4] == b"\x25\x50\x44\x46":
+        return "application/pdf"
+
     return "application/octet-stream"
 
 
 def get_extension(mime_type: str) -> Optional[str]:
     extension_map = {
+        "application/pdf": "pdf",
         "application/x-shockwave-flash": "swf",
         "application/zip": "zip",
         "image/gif": "gif",
@@ -113,4 +117,11 @@ def is_heif(mime_type: str) -> bool:
 def is_visual(mime_type: str) -> bool:
     return mime_type.lower() not in (
         "application/zip",
+        "application/pdf",
+    )
+
+
+def is_story(mime_type: str) -> bool:
+    return mime_type.lower() in (
+        "application/pdf",
     )

@@ -17,7 +17,8 @@
                     'video/mp4': 'MPEG-4',
                     'video/quicktime': 'MOV',
                     'application/x-shockwave-flash': 'SWF',
-                    'application/zip': 'ZIP'
+                    'application/zip': 'ZIP',
+                    'application/pdf': 'PDF',
                 }[ctx.post.mimeType] %><!--
             --></a>
             (<%- ctx.post.canvasWidth %>x<%- ctx.post.canvasHeight %>)
