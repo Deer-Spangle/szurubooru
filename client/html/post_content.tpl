@@ -39,6 +39,19 @@
 
         <% } %>
 
+    <% } else if (ctx.post.type === 'story') { %>
+
+        <% if (ctx.post.mimeType === 'application/pdf') { %>
+
+            <object class='resize-listener' data='<%- ctx.post.contentUrl %>'>
+            </object>
+
+        <% } else { %>
+
+            <img class='resize-listener' alt='' src='/img/doc_story.svg'/>
+
+        <% } %>
+
     <% } else { console.log(new Error('Unknown post type')); } %>
 
     <div class='post-overlay resize-listener'>

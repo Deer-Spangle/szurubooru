@@ -90,6 +90,7 @@ TYPE_MAP = {
     model.Post.TYPE_VIDEO: "video",
     model.Post.TYPE_FLASH: "flash",
     model.Post.TYPE_ZIP: "zip",
+    model.Post.TYPE_STORY: "story",
 }
 
 FLAG_MAP = {
@@ -622,6 +623,8 @@ def update_post_content(post: model.Post, content: Optional[bytes]) -> None:
             post.type = model.Post.TYPE_IMAGE
     elif mime.is_video(post.mime_type):
         post.type = model.Post.TYPE_VIDEO
+    elif mime.is_story(post.mime_type):
+        post.type = model.Post.TYPE_STORY
     elif post.mime_type == "application/zip":
         post.type = model.Post.TYPE_ZIP
     else:

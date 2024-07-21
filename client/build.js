@@ -245,6 +245,7 @@ function bundleBinaryAssets() {
     fs.copyFileSync('./img/favicon.png', './public/img/favicon.png');
 
     fs.copyFileSync('./img/doc_zip.svg', './public/img/doc_zip.svg');
+    fs.copyFileSync('./img/doc_story.svg', './public/img/doc_story.svg');
 
     console.info('Copied images');
 
