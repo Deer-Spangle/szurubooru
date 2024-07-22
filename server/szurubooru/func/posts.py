@@ -549,6 +549,13 @@ def purge_post_signature(post: model.Post) -> None:
 
 
 def generate_post_signature(post: model.Post, content: bytes) -> None:
+    # Photoshop PSD files can't get parsed by pillow, so convert to png
+    if post.mime_type == "image/vnd.adobe.photoshop":
+        image = images.Image(content)
+        image.resize_fill(image.width, image.height)
+        content = image.content
+
+    # Generate hash signatures
     try:
         unpacked_signature = image_hash.generate_signature(content)
         packed_signature = image_hash.pack_signature(unpacked_signature)
