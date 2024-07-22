@@ -48,6 +48,9 @@ def get_mime_type(content: bytes) -> str:
     if content[0:4] == b"\x25\x50\x44\x46":
         return "application/pdf"
 
+    if content[0:4] == b"\x38\x42\x50\x53":
+        return "image/vnd.adobe.photoshop"
+
     return "application/octet-stream"
 
 
@@ -64,6 +67,7 @@ def get_extension(mime_type: str) -> Optional[str]:
         "image/avif": "avif",
         "image/heif": "heif",
         "image/heic": "heic",
+        "image/vnd.adobe.photoshop": "psd",
         "video/mp4": "mp4",
         "video/quicktime": "mov",
         "video/webm": "webm",
@@ -95,6 +99,7 @@ def is_image(mime_type: str) -> bool:
         "image/avif",
         "image/heif",
         "image/heic",
+        "image/vnd.adobe.photoshop",
     )
 
 
