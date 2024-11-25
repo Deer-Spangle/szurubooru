@@ -48,7 +48,15 @@
         <% if (ctx.post.mimeType === 'application/pdf') { %>
 
             <object class='resize-listener' data='<%- ctx.post.contentUrl %>'>
+            <a href='<%- ctx.post.contentUrl %>'>No pdf embed support?</a>
             </object>
+
+        <% } else if (ctx.post.mimeType === 'text/plain') { %>
+
+            <object class='resize-listener' data='<%- ctx.post.contentUrl %>' type="text/plain">
+            <a href='<%- ctx.post.contentUrl %>'>No plaintext embed support?</a>
+            </object>
+
 
         <% } else { %>
 

@@ -47,6 +47,7 @@
                     'application/x-shockwave-flash': 'SWF',
                     'application/zip': 'ZIP',
                     'application/pdf': 'PDF',
+                    'text/plain': 'TXT',
                 }[ctx.post.mimeType] +
                 ' (' +
                 (ctx.post.canvasWidth ?

@@ -20,6 +20,7 @@
                     'application/x-shockwave-flash': 'SWF',
                     'application/zip': 'ZIP',
                     'application/pdf': 'PDF',
+                    'text/plain': 'TXT',
                 }[ctx.post.mimeType] %><!--
             --></a>
             (<%- ctx.post.canvasWidth %>x<%- ctx.post.canvasHeight %>)
