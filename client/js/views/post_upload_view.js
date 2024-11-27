@@ -11,7 +11,7 @@ const rowTemplate = views.getTemplate("post-upload-row");
 function _mimeTypeToPostType(mimeType) {
     return (
         {
-            "application/pdf": "pdf",
+            "application/pdf": "story",
             "application/x-shockwave-flash": "flash",
             "application/x-tgs": "zip",
             "application/zip": "zip",
@@ -24,7 +24,7 @@ function _mimeTypeToPostType(mimeType) {
             "image/heif": "image",
             "image/heic": "image",
             "image/vnd.adobe.photoshop": "image",
-            "text/plain": "txt",
+            "text/plain": "story",
             "video/mp4": "video",
             "video/webm": "video",
             "video/quicktime": "video",
@@ -118,6 +118,7 @@ class Url extends Uploadable {
         let mime = {
             pdf: "application/pdf",
             swf: "application/x-shockwave-flash",
+            tgs: "application/x-tgs",
             zip: "application/zip",
             jpg: "image/jpeg",
             png: "image/png",
@@ -174,7 +175,7 @@ class PostUploadView extends events.EventTarget {
             this._contentInputNode,
             {
                 extraText:
-                    "Allowed extensions: .jpg, .png, .gif, .webm, .mp4, .swf, .avif, .heif, .heic, .psd, .zip, .pdf, .txt",
+                    "Allowed extensions: .jpg, .png, .gif, .webm, .mp4, .swf, .avif, .heif, .heic, .psd, .zip, .pdf, .txt, .tgs",
                 allowUrls: true,
                 allowMultiple: true,
                 lock: false,
