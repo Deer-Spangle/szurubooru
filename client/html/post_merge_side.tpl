@@ -46,6 +46,7 @@
                     'video/quicktime': 'MOV',
                     'application/x-shockwave-flash': 'SWF',
                     'application/zip': 'ZIP',
+                    'application/x-tgs': 'TGS',
                     'application/pdf': 'PDF',
                     'text/plain': 'TXT',
                 }[ctx.post.mimeType] +

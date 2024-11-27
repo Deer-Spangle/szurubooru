@@ -1,3 +1,5 @@
+import gzip
+import json
 import re
 from typing import Optional
 
@@ -57,7 +59,23 @@ def get_mime_type(content: bytes) -> str:
     except UnicodeDecodeError:
         pass
 
+    if _content_is_tgs_file(content):
+        return "application/x-tgs"
+
     return "application/octet-stream"
+
+
+def _content_is_tgs_file(content: bytes) -> bool:
+    try:
+        decompress = gzip.decompress(content)
+        data = json.loads(decompress)
+        if data.get("tgs") == 1:
+            return True
+        if isinstance(data.get("w"), int) and isinstance(data.get("h"), int):
+            return True
+        return False
+    except (gzip.BadGzipFile, json.JSONDecodeError):
+        return False
 
 
 def get_extension(mime_type: str) -> Optional[str]:
@@ -65,6 +83,7 @@ def get_extension(mime_type: str) -> Optional[str]:
         "application/pdf": "pdf",
         "text/plain": "txt",
         "application/x-shockwave-flash": "swf",
+        "application/x-tgs": "tgs",
         "application/zip": "zip",
         "image/gif": "gif",
         "image/jpeg": "jpg",
@@ -127,9 +146,14 @@ def is_heif(mime_type: str) -> bool:
 
 
 def is_visual(mime_type: str) -> bool:
-    return mime_type.lower() not in (
+    return not is_archive(mime_type) and not is_story(mime_type)
+
+
+def is_archive(mime_type: str) -> bool:
+    return mime_type.lower() in (
         "application/zip",
-    ) and not is_story(mime_type)
+        "application/x-tgs",
+    )
 
 
 def is_story(mime_type: str) -> bool:

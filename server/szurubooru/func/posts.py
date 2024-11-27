@@ -641,7 +641,7 @@ def update_post_content(post: model.Post, content: Optional[bytes]) -> None:
         post.type = model.Post.TYPE_VIDEO
     elif mime.is_story(post.mime_type):
         post.type = model.Post.TYPE_STORY
-    elif post.mime_type == "application/zip":
+    elif mime.is_archive(post.mime_type):
         post.type = model.Post.TYPE_ZIP
     else:
         raise InvalidPostContentError(

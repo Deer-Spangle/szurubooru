@@ -13,6 +13,7 @@ function _mimeTypeToPostType(mimeType) {
         {
             "application/pdf": "pdf",
             "application/x-shockwave-flash": "flash",
+            "application/x-tgs": "zip",
             "application/zip": "zip",
             "image/gif": "image",
             "image/jpeg": "image",
