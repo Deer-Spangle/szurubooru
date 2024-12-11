@@ -52,7 +52,7 @@
     <div class='content'>
         <div class='post-container'></div>
 
-        <% if (ctx.editMode) { %>
+        <% if (ctx.editMode && ctx.canEditPostDescription) { %>
             <h2>Description</h2>
             <%= ctx.makeTextarea({
                 id: 'post-description',
