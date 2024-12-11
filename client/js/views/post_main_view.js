@@ -58,6 +58,7 @@ class PostMainView {
         this._installSidebar(ctx);
         this._installCommentForm();
         this._installComments(ctx.post.comments);
+        this.postDescription = document.getElementById("post-description");
 
         const showPreviousImage = () => {
             if (ctx.prevPostId) {

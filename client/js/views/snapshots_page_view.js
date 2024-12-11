@@ -101,6 +101,9 @@ function _makeItemModification(type, data) {
         if (diff.source) {
             _extend(lines, _formatBasicChange(diff.source, "source"));
         }
+        if (diff.description) {
+            _extend(lines, _formatBasicChange(diff.description, "description"));
+        }
         if (diff.safety) {
             _extend(lines, _formatBasicChange(diff.safety, "safety"));
         }
