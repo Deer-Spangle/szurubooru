@@ -49,7 +49,6 @@ class PostMainController extends BasePostController {
                           )
                         : uri.formatClientLink("post", ctx.parameters.id);
                     router.replace(url, ctx.state, false);
-                    console.log(parameters.query);
                     parameters.query.split(" ").forEach((item) => {
                         const found = item.match(/^pool:([0-9]+)/i);
                         if (found) {
