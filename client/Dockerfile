@@ -1,4 +1,3 @@
-ARG BUILDPLATFORM=linux/amd64
 FROM --platform=$BUILDPLATFORM node:lts as builder
 WORKDIR /opt/app
 

@@ -1,5 +1,4 @@
 ARG ALPINE_VERSION=3.13
-ARG BUILDPLATFORM=linux/amd64
 
 
 FROM alpine:$ALPINE_VERSION as prereqs
