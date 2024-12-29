@@ -33,7 +33,12 @@
 
     <% } else if (ctx.post.type === 'zip') { %>
 
-        <% if (ctx.post.hasCustomThumbnail === true) { %>
+        <% if (ctx.post.mimeType === 'application/x-tgs') { %>
+
+            <tgs-player autoplay loop mode='normal' src='<%- ctx.post.contentUrl %>'>
+            </tgs-player>
+
+        <% } else if (ctx.post.hasCustomThumbnail === true) { %>
             
             <img class='resize-listener' alt='' src='<%- ctx.post.thumbnailUrl %>'/>
 
